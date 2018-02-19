@@ -1,0 +1,7 @@
+<div class="switch__main">
+  <button class="switch__button btn" *ngFor="let t of types"
+  (click)="switch(t)"
+  [class.btn-success]="t.url === type.url">
+  {{t.text}}
+  </button>
+</div>

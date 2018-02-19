@@ -1,0 +1,14 @@
+<h4>hi there)s</h4>
+<div class="row">
+  <switcher
+  [types] = "types"
+  [type] = "currentType"
+  (changeType)="changingType($event)"
+  ></switcher>
+</div>
+
+<div class="row">
+  <cats
+  [type] = "currentType"
+  ></cats>
+</div>
