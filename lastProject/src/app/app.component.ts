@@ -31,9 +31,11 @@ constructor(
     this.auth.getAuthState().subscribe(
       (user) => this.user = user);
           // console.log('!!', this.db.list('myApp'));
-          this.top = firebase.database().ref('myApp/Income/Cats');
-          this.data = this.top.on('value', snap => {
-              console.log("!!!",snap);
+          this.top = firebase.database().ref('myApp/Income/Cats/Salary');
+          this.data = this.top.on('value', function(snapshot){
+            snapshot.forEach(function(data){
+              console.log("the " + data.key + " value is: " + data.val());
+            });
           });
           
   }
