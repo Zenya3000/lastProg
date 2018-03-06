@@ -1,0 +1,23 @@
+<!-- <h3>{{type.text}}</h3> -->
+
+<div [@operAnimation]="operAnim">
+  <div class="{{class}} mainCat ">
+    <div *ngIf="cat">
+      <h2>{{cat}}</h2>
+      <div class="enterSum" >
+        <label for="sum" [@insideOperLabel]>Введите сумму</label>
+        <input #newCatMoney type="number" class="forms" id="sum" [@insideOperInput]>
+      </div>  
+      <div>
+        <textarea #newCatDescr rows="4" class="forms"></textarea>
+      </div>
+      <button (click)="addOper(newCatMoney, newCatDescr)" class="btn btn-success">addNote</button>
+    </div>
+    
+    <div *ngIf="!cat" class="ChooseCat">
+          Выберите категорию!
+    </div>
+  </div>
+</div>
+
+

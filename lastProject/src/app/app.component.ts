@@ -7,6 +7,7 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 
 import * as firebase from 'firebase/app';
 import { AuthService } from './-service/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 @Component({
@@ -21,23 +22,19 @@ export class AppComponent implements OnInit {
   user = null;
   top;
   data;
+  user2;
+  name;
 
 constructor(
   private auth: AuthService,
-  public db: AngularFireDatabase) { }
+  public db: AngularFireDatabase,
+  private af: AngularFireAuth) { }
 
  
   ngOnInit() {
     this.auth.getAuthState().subscribe(
-      (user) => this.user = user);
-          // console.log('!!', this.db.list('myApp'));
-          this.top = firebase.database().ref('myApp/Income/Cats/Salary');
-          this.data = this.top.on('value', function(snapshot){
-            snapshot.forEach(function(data){
-              console.log("the " + data.key + " value is: " + data.val());
-            });
-          });
-          
+      (user) => this.user = user);   
+      this.getName();
   }
   loginWithGoogle() {
     this.auth.loginWithGoogle();
@@ -49,6 +46,13 @@ constructor(
     this.auth.logout();
     
 
+  }
+  getName(){
+      this.af.authState.subscribe((auth) => {
+      this.name = auth;
+      console.log('name', this.name);
+    });
+    return this.name;
   }
   test(){
     var database = firebase.database();
