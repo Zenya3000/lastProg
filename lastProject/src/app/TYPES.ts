@@ -1,12 +1,12 @@
 export const TYPES = [
     {
-        url: 'Consumption',
+        url: 'consumption',
         className: 'dash--cons',
         text: 'Расход'
     },
     {
-        url: 'Income',
+        url: 'income',
         className: 'dash--income',
-        text: 'Доход'
+        text: 'Приход'
     }
 ];

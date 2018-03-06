@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^5.2.7",
+    "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/core": "^5.2.0",
@@ -21,13 +21,8 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
-    "angular2-fontawesome": "^5.2.1",
     "core-js": "^2.4.1",
-    "font-awesome": "^4.7.0",
-    "ng-animate": "^0.3.1",
-    "ngx-pipes": "^2.1.1",
     "rxjs": "^5.5.6",
-    "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
@@ -37,7 +32,7 @@
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
-    "angularfire2": "^4.0.0-rc0",
+    "angularfire2": "^4.0.0-rc.0",
     "bootstrap": "^3.3.7",
     "codelyzer": "^4.0.1",
     "firebase": "^3.9.0",
