@@ -1,37 +1,9 @@
-<!-- <h3>{{type.text}}</h3>
-<hr> -->
-<div class="cats_main">
-<div class="list"
-[@listAnimation]="cats.length">
-  <div *ngFor="let c of cats; let i = index;" [class.active]="clicked === c" class="{{class}} item"
-   
-
-    (click)="clicked = c">
-    <!-- <div [ngSwitch]="class">
-      <i *ngSwitchCase = "class" class="fa fa-level-down fa-2x" aria-hidden="true">1</i>
-      <i *ngSwitchCase = "dash--cons" class="fa fa-level-up fa-2x" aria-hidden="true"></i>
-      <i ngSwitchDefault>bla</i>
-    </div>   -->
-    <div *ngIf="class == 'dash--income'">
-        <i class="fa fa-level-down fa-2x" aria-hidden="true"></i>
-    </div>
-    <div *ngIf="class == 'dash--cons'">
-        <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
-    </div>
-
-    <div class="cat"
-    (click)="choseCat(c)"
+<ul>
+  <!-- <li *ngFor="let c of cats; let i = index"
+  >
+    <span
+    (click)="chooseCat(c)"
     >
-
-    {{c}} 
-
-    </div>
-    <button
-    (click)="deleteCat(c, i)"
-    >+</button>
-  </div>
-</div>
-<cat 
-(addCat)="addCat($event)"
-></cat>
-</div>
+    {{c.name}}</span>
+  </li> -->
+</ul>
