@@ -9,6 +9,7 @@ export class SwitcherComponent implements OnInit {
   @Input() type;
   @Input() types;
   @Output() changeType = new EventEmitter
+  
   constructor() { }
 
   ngOnInit() {
