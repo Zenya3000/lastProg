@@ -1,0 +1,10 @@
+<div *ngIf="!cat">
+  choose cat
+</div>
+<div *ngIf="cat">
+  <h2>{{catName}}</h2>
+  <span *ngFor="let item of output" >
+    {{item.date}}/{{item.description}}/{{item.money}}<br>
+  </span>
+</div>
+{{total}}

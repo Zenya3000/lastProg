@@ -5,7 +5,7 @@
   </div>
 
   <div *ngIf="user?.uid; else loginBox">
-    <h1>Wellcome to {{title}}</h1>
+    <h1>Добро пожаловать в систему, {{name.displayName}}</h1>
     
     <button (click)="logout()">Logout</button>
 
@@ -14,7 +14,7 @@
     <dash></dash>
   </div>
   <ng-template #loginBox>
-    <h2>Hello, please, login to {{title}}</h2>
+    <h2>Hello, please, login to our project to continue</h2>
     <div><button (click)="loginWithGoogle()">Login with Google</button></div>
   </ng-template>  
   
