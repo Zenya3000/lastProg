@@ -3,18 +3,39 @@
 <div [@operAnimation]="operAnim">
   <div class="{{class}} mainCat ">
     <div *ngIf="cat">
-      <h2>{{cat}}</h2>
-      <div class="enterSum" >
-        <label for="sum" [@insideOperLabel]>Введите сумму</label>
-        <input #newCatMoney type="number" class="forms" id="sum" [@insideOperInput]>
-      </div>  
-      <div>
-        <textarea #newCatDescr rows="4" class="forms"></textarea>
-      </div>
-      <button (click)="addOper(newCatMoney, newCatDescr)" class="btn btn-success">addNote</button>
+      <!-- <h2>{{cat}}</h2> -->
+      <form [formGroup]="complexForm" (ngSubmit)="addOper(newCatMoney, newCatDescr)" class="operForm">
+          <div class="alert alert-danger modal_window" [@operModal] *ngIf="!complexForm.controls['sum'].valid && complexForm.controls['sum'].touched">
+            <div class="inside_modal_window">You must write sum.</div>
+            <svg-icon src="assets/arrow.svg" style="fill: #f2dede; width: 125px; transform: rotate(44deg) translate(83px, -69px);"></svg-icon>
+          </div>
+  
+        <div class="enterSum" [ngClass]="{'has-error':!complexForm.controls['sum'].valid && complexForm.controls['sum'].touched}">
+
+          <label for="sum" [@insideOperLabel]>Введите сумму</label>
+          <input #newCatMoney type="number" id="sum" [@insideOperInput] [formControl]="complexForm.controls['sum']">
+
+        </div>
+
+        
+        <div [ngClass]="{'has-error':!complexForm.controls['description'].valid && complexForm.controls['description'].touched}" class="form_textarea">
+        
+          <textarea #newCatDescr rows="4"  [formControl]="complexForm.controls['description']" placeholder="Описание"></textarea>
+          <div class="alert alert-danger modal_window_descr" [@operModal] *ngIf="!complexForm.controls['description'].valid && complexForm.controls['description'].touched">
+              <div class="inside_modal_window">You must write description.</div>
+              <svg-icon src="assets/arrow.svg" style=" fill: #f2dede; width: 106px; transform: rotateY(180deg) translate(147px, -17px);"></svg-icon>
+          </div> 
+        </div>
+
+        <button type="submit" class="addNote_button" [disabled]="!complexForm.valid"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+      </form>
+      
+
+
+
     </div>
     
-    <div *ngIf="!cat" class="ChooseCat">
+    <div *ngIf="!cat" class="ChooseCat" [@chooseCat]>
           Выберите категорию!
     </div>
   </div>

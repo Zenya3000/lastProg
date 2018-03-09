@@ -1,9 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { OpersService } from '../-service/opers.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { trigger, state, style, stagger, transition, animate, keyframes, useAnimation, query } from '@angular/animations';
 import { fadeIn } from 'ng-animate';
 import { lightSpeedIn } from 'ng-animate';
 import { lightSpeedOut } from 'ng-animate';
+import { bounceIn } from 'ng-animate';
+
 @Component({
   selector: 'oper',
   templateUrl: './oper.component.html',
@@ -23,8 +27,7 @@ import { lightSpeedOut } from 'ng-animate';
     ]),
     trigger('insideOperLabel', [
       transition(':enter', [
-        style({transform: 'translateX(30%)', opacity: 0}),
-        animate('400ms', style({transform: 'translateX(0)', opacity: 1}))
+        useAnimation(bounceIn)
       ]),
       transition(':leave', [
         useAnimation(lightSpeedOut)
@@ -32,22 +35,45 @@ import { lightSpeedOut } from 'ng-animate';
     ]),
     trigger('insideOperInput', [
       transition(':enter', [
-        style({transform: 'translateX(18%)', opacity: 0}),
-        animate('300ms', style({transform: 'translateX(0)', opacity: 1}))
+        useAnimation(bounceIn)
       ]),
       transition(':leave', [
         useAnimation(lightSpeedOut)
       ])
     ]),
+    trigger('chooseCat',[
+      transition(':enter', [
+        useAnimation(bounceIn)
+      ]),
+      transition(':leave', [
+        useAnimation(lightSpeedOut)
+      ])
+    ]),
+    trigger('operModal', [
+      transition(':enter', [
+        useAnimation(bounceIn)
+      ]),
+      transition(':leave', [
+        useAnimation(lightSpeedOut)
+      ])
+    ])
   ],
 })
 export class OperComponent implements OnInit {
   @Input() cat;
   @Input() class;
   @Input() type;
+  complexForm : FormGroup;
+
   constructor(
-    private os: OpersService
-  ) { }
+    private os: OpersService,
+    private fb: FormBuilder
+  ) { 
+    this.complexForm = fb.group({
+      'sum' : [null, Validators.required],
+      'description': [null, Validators.required],
+    })
+   }
 
   ngOnInit() {
   }
@@ -58,6 +84,10 @@ export class OperComponent implements OnInit {
         }
     }
   }
+  // submitForm(value: any):void{
+  //   console.log('Reactive Form Data: ')
+  //   console.log(value);
+  // }
 
   addOper(newCatMoney, newCatDescr){
     let data = {
@@ -66,6 +96,10 @@ export class OperComponent implements OnInit {
       cat: this.cat,
     }
     this.os.addOper(this.type, data);
+    this.complexForm = this.fb.group({
+      'sum' : '',
+      'description': '',
+    })
     console.log('newNote', data);
   }
 }
