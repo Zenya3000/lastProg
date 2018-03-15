@@ -1,0 +1,27 @@
+
+    <div class="item">
+        <div class="icon {{icon}}"></div>
+        <div class="descr">
+          <div class="test1">
+            <span class="catName">{{catName}} &nbsp;/&nbsp;</span>  
+            <span class="date"> {{item.date}} /&nbsp;</span>
+          </div>
+          <div class="test2">
+            <span class="itemDescr" *ngIf="ChangeEdit">{{item.description}} <i class="fa fa-pencil-square-o editButton" (click)="edit()" *ngIf="ChangeEdit"></i><i class="fa fa-times removeButton" (click)="remove()" *ngIf="ChangeEdit"></i></span>
+          
+            <textarea class="form-control" type="text" *ngIf="!ChangeEdit" [(ngModel)]="item.description"></textarea>
+            <i class="fa fa-floppy-o saveButton" (click)="saveEdit(content)" *ngIf="!ChangeEdit"></i>
+          </div>
+ 
+
+        </div>
+        <div class="money" *ngIf="class == 'dash--cons' && ChangeEdit">
+            -{{item.money}}&nbsp;<span>грн.</span>   
+        </div>
+        <input class="form-control input_money" type="text" *ngIf="class == 'dash--cons' && !ChangeEdit" [(ngModel)]="item.money">
+
+        <div class="money" *ngIf="class == 'dash--income' && ChangeEdit">
+            +{{item.money}}&nbsp;<span>грн.</span>   
+        </div>
+        <input class="form-control input_money" type="text" *ngIf="class == 'dash--income' && !ChangeEdit" [(ngModel)]="item.money">
+    </div>

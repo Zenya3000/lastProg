@@ -1,10 +1,29 @@
-<div *ngIf="!cat">
-  choose cat
+<div *ngIf="!cat" class="{{class}}">
+  <div class="total_board">
+      <p>Ваш суммарный <span class="lower">{{typeName}}</span>: <span class="total">{{total}}</span> грн.</p>
+  </div>
+  <div class="choseCat">Выберите категорию!</div>
 </div>
-<div *ngIf="cat">
-  <h2>{{catName}}</h2>
-  <span *ngFor="let item of output" >
-    {{item.date}}/{{item.description}}/{{item.money}}<br>
-  </span>
+<div *ngIf="cat" class="{{class}}">
+  <div class="main_opers">
+    <div class="total_board">
+        <p>Ваш суммарный <span class="lower">{{typeName}}</span>: <span class="total">{{total}}</span> грн.</p>
+    </div>
+    
+    
+    <div [@listOpersAnimation] = "output.length">
+      <div *ngFor="let item of output; let i = index;" >
+        <oneoperlist
+        [item] = "item"
+        [icon] = "cat.icon"
+        [class] = "class"
+        [catName] = "catName"
+        [type] = "type"
+        [index] = "i"
+        (removeOper) = "removeOper($event)"
+        ></oneoperlist>
+      </div>
+  </div>
+  </div>
 </div>
-{{total}}
+

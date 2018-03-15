@@ -1,3 +1,13 @@
+<hr>
+<div class="iconCat">
+  <span *ngFor="let icon of icons; let i = index;" class="icon"
+  (click)="changeVal(icon.url)" [class.active]="clicked === icon.url"
+  (click)="clicked = icon.url">
+      <i class="{{icon.url}} fa-2x" aria-hidden="true"></i>
+      {{icon.name}}
+  </span>
+</div>
+
 <div class="addCat">
   <input type="text" class="from-control" #newCat>
   <button class="btn btn-success" (click)="addCategory(newCat)">Add cat</button>

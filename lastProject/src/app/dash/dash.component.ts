@@ -12,7 +12,7 @@ import { TypesService } from '../-service/types.service';
 export class DashComponent implements OnInit {
   types;
   currentType;
-  currentCat;
+  currentCat = false;
   defaultCat;
   className;
 
@@ -28,6 +28,7 @@ export class DashComponent implements OnInit {
   }
   ngOnChanges(){
     this.currentClass();
+    this.getCurrentType();
   }
 
   currentClass(){
@@ -46,7 +47,12 @@ export class DashComponent implements OnInit {
     this.currentCat = null;
   }
   choosingCat(cat){
+
     this.currentCat = cat;
+    console.log('curCat', this.currentCat);
+  }
+  removeChoosingSelect(cat){
+    this.currentCat = false;
   }
   defCat(){
     // nado sdelat'

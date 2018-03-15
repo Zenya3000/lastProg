@@ -56,8 +56,20 @@ import { bounceIn } from 'ng-animate';
       transition(':leave', [
         useAnimation(lightSpeedOut)
       ])
-    ])
+    ]),
+    trigger('iconUnderLine', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 0.6 }))
+      ]),
+      transition(':leave', [
+        style({transform: 'translateX(0)', opacity: 0}),
+        animate('300ms', style({transform: 'translateX(100%)', opacity: 0}))
+      ])
+    ]),
+
   ],
+  
 })
 export class OperComponent implements OnInit {
   @Input() cat;
@@ -76,13 +88,15 @@ export class OperComponent implements OnInit {
    }
 
   ngOnInit() {
+    
   }
   ngOnChanges(changes){
     for( const c in changes){
-        if(c === "type"){
-          //  console.log(c)
+        if(c === "cat"){
+
         }
     }
+    
   }
   // submitForm(value: any):void{
   //   console.log('Reactive Form Data: ')
@@ -90,16 +104,16 @@ export class OperComponent implements OnInit {
   // }
 
   addOper(newCatMoney, newCatDescr){
+
     let data = {
       money: newCatMoney.value,
       descr: newCatDescr.value,
-      cat: this.cat,
+      cat: this.cat.cat,
     }
     this.os.addOper(this.type, data);
     this.complexForm = this.fb.group({
       'sum' : '',
       'description': '',
     })
-    console.log('newNote', data);
   }
 }

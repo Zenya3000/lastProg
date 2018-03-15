@@ -3,6 +3,8 @@ import { CatsService } from '../-service/cats.service';
 import { trigger, state, style, stagger, transition, animate, keyframes, useAnimation, query } from '@angular/animations';
 import { fadeOut } from 'ng-animate';
 import { fadeIn } from 'ng-animate';
+import { bounceIn } from 'ng-animate';
+import { lightSpeedOut } from 'ng-animate';
 @Component({
   selector: 'cats',
   templateUrl: './cats.component.html',
@@ -20,8 +22,23 @@ import { fadeIn } from 'ng-animate';
             style({opacity: 1, transform: 'translateX(0)', offset: 1}),
           ]))
         ]), {optional: true})
+
       ])
     ]),
+
+
+
+    // trigger('itemAnimation', [
+    //   transition(':leave', [
+    //     useAnimation(fadeOut)
+    //   ])
+    // ]),
+    // trigger('itemAnimationn', [
+    //   transition(':leave', [
+    //     useAnimation(fadeOut)
+    //   ])
+    // ]),
+
     // trigger('animCats', [
     //   transition('* <=> *', [
     //     query(':enter', style({opacity: 0, transform: 'translateY(-40px)'}), {optional: true}),
@@ -35,6 +52,7 @@ import { fadeIn } from 'ng-animate';
 export class CatsComponent implements OnInit {
   @Input() type;
   @Output() selectedCat = new EventEmitter()
+  @Output() removeSelect = new EventEmitter()
   @Input() class;
   cats = [];
   defCategory;
@@ -47,11 +65,10 @@ export class CatsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
-  ngOnChanges(){
+  ngOnChanges(change){
     this.getCats();
-    
-    
   }
 
   getCats(){
@@ -60,23 +77,39 @@ export class CatsComponent implements OnInit {
     this.clicked = false;
   }
   choseCat(cat){
+    
     this.selectedCat.emit(cat);
     this.status = true;
   }
   deleteCat(c, i){
-    if(confirm('are you sure?')){
-      this.cs.deleteCat(this.type, c, i);
+
+
+    if(confirm('you really want to remove '+ c +' category?')){
       this.cats.splice(i, 1);
+      this.cs.deleteCat(this.type, c);
+      this.removeSelect.emit(c); 
+
+      //не решено!!!, надо разобраться почему
+      //перегружаються  категории
+      // this.getCats();
+      // ------------------------------------------------
 
     }
+    
   }
   addCat(addCat){
-    console.log('addCat', addCat);
     let data = {
-      cat: addCat,
-      type: this.type
+      cat: addCat.value,
+      type: this.type,
+      icon: addCat.icon
     }
     this.cs.addCat(data);
+    
+    // this.cats.push({
+    //   cat : addCat.value,
+    //   icon : addCat.icon
+    // })
+    console.log('cats', this.cats);
   }
 
 

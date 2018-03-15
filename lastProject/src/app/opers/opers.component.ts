@@ -1,7 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, ViewEncapsulation } from '@angular/core';
 import { OpersService } from '../-service/opers.service';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { trigger, state, style, stagger, transition, animate, keyframes, useAnimation, query } from '@angular/animations';
+import { fadeIn, bounce } from 'ng-animate';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
@@ -13,28 +16,38 @@ import * as firebase from 'firebase/app';
   templateUrl: './opers.component.html',
   styleUrls: ['./opers.component.sass'],
   providers: [OpersService],
-  // animations: [
-  //   trigger('bounce', [transition('* => *', useAnimation(bounce))])
-  // ],
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('listOpersAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+        // useAnimation(fadeIn)
+      ]),
+      transition(':leave', [
+        style({transform: 'translateX(0)', opacity: 1}),
+        animate('300ms', style({transform: 'translateX(100%)', opacity: 0}))
+      ])
+    ]),
+  ],
 })
 export class OpersComponent implements OnInit {
   todos$: Observable<any[]>;
-  catName;
+  catName = false;
   output = [];
   tempObj = {};
   money = [];
   total = 0;
-  
+  ChangeEdit = true;
   @Input() class;
   @Input() type;
   @Input() cat;
   @Input() defCat;
-
+  typeName = false;
   constructor(
     private os: OpersService,
     private af: AngularFireDatabase
   ) { }
-
   ngOnInit() {
 
   }
@@ -42,18 +55,21 @@ export class OpersComponent implements OnInit {
 
 
     for (const c in changes) {
+     
       if(c === 'cat'){
-        this.getOpers();
-        this.catName = this.cat;
+        this.getOpers(this.cat);
+        this.typeName = this.type.text;
       }
       if(c === 'type'){
-        this.cat = null;
+        this.typeName = this.type.text;
+        this.cat = false;
         this.sumMoney();
       }
     }
     
   }
   sumMoney(){
+    this.money = [];
     let sum = this.af.list('MyApp/'+ this.type.url+'');
     sum.subscribe(items => {
       var i = 0;
@@ -63,21 +79,22 @@ export class OpersComponent implements OnInit {
           i++; 
         }
       });
+
       this.total = 0;
       for (let i = 0; i < this.money.length; i++) {
         if(this.money[i].money != null || undefined){
           this.total = (+this.total + +this.money[i].money); 
         }
-        
       }
     });
     
 
   }
-  getOpers(){
+  getOpers(cat){
     this.output = [];
-    this.todos$ = this.af.list('MyApp/'+ this.type.url+'/'+this.cat+''); 
+    this.todos$ = this.af.list('MyApp/'+ this.type.url+'/'+cat.cat+''); 
     this.todos$.subscribe(items => {
+      
       var b = 0;
       items.forEach(item => {
           if(item.date != null){
@@ -86,6 +103,19 @@ export class OpersComponent implements OnInit {
           }
       });
   });
+  this.catName = cat.cat;
+  }
+  edit(){
+    
+    this.ChangeEdit = !this.ChangeEdit;
 
+  }
+  saveEdit(){
+    
+    this.ChangeEdit = !this.ChangeEdit;
+
+  }
+  removeOper(index){
+    this.output.splice(index, 1);
   }
 }

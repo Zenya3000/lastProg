@@ -34,7 +34,7 @@ export class OpersService {
         limitToFirst: 1
       }
     });
-    // console.log('!', this.todos$);
+    console.log('!', this.todos$);
   };
 
   addOper(type, data){
@@ -46,6 +46,17 @@ export class OpersService {
         money: data.money,
         description: data.descr
     });
+  }
+
+  saveOper(item, type, cat){
+  console.log(item);
+  let query = firebase.database().ref('MyApp/'+type.url+'/'+cat+'/'+item.$key+'');
+  query.update({ description: item.description,  money: item.money})
+  }
+  
+  removeOper(item, type, cat){
+    let query = firebase.database().ref('MyApp/'+type.url+'/'+cat+'/'+item.$key+'');
+    query.remove();
   }
   
 }

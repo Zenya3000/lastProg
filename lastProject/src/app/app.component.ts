@@ -44,13 +44,13 @@ constructor(
   }
   logout(){
     this.auth.logout();
+    this.af.auth.signOut();
     
 
   }
   getName(){
       this.af.authState.subscribe((auth) => {
       this.name = auth;
-      console.log('name', this.name);
     });
     return this.name;
   }

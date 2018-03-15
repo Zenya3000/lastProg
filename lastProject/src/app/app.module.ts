@@ -21,6 +21,7 @@ import { CatComponent } from './cats/cat/cat.component';
 import { OpersComponent } from './opers/opers.component';
 import { OperComponent } from './oper/oper.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OneoperlistComponent } from './oneoperlist/oneoperlist.component';
 
 
 
@@ -33,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CatComponent,
     OpersComponent,
     OperComponent,
+    OneoperlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularSvgIconModule
+    AngularSvgIconModule,
+    FormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

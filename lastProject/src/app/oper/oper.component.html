@@ -3,10 +3,10 @@
 <div [@operAnimation]="operAnim">
   <div class="{{class}} mainCat ">
     <div *ngIf="cat">
-      <!-- <h2>{{cat}}</h2> -->
+      
       <form [formGroup]="complexForm" (ngSubmit)="addOper(newCatMoney, newCatDescr)" class="operForm">
           <div class="alert alert-danger modal_window" [@operModal] *ngIf="!complexForm.controls['sum'].valid && complexForm.controls['sum'].touched">
-            <div class="inside_modal_window">You must write sum.</div>
+            <div class="inside_modal_window">Введите сумму.</div>
             <svg-icon src="assets/arrow.svg" style="fill: #f2dede; width: 125px; transform: rotate(44deg) translate(83px, -69px);"></svg-icon>
           </div>
   
@@ -16,13 +16,13 @@
           <input #newCatMoney type="number" id="sum" [@insideOperInput] [formControl]="complexForm.controls['sum']">
 
         </div>
-
+        <div class="icon" [@iconUnderLine]><i class="{{cat.icon}} fa-2x"></i>{{cat.cat}}</div>
         
         <div [ngClass]="{'has-error':!complexForm.controls['description'].valid && complexForm.controls['description'].touched}" class="form_textarea">
         
           <textarea #newCatDescr rows="4"  [formControl]="complexForm.controls['description']" placeholder="Описание"></textarea>
           <div class="alert alert-danger modal_window_descr" [@operModal] *ngIf="!complexForm.controls['description'].valid && complexForm.controls['description'].touched">
-              <div class="inside_modal_window">You must write description.</div>
+              <div class="inside_modal_window">Введите описание.</div>
               <svg-icon src="assets/arrow.svg" style=" fill: #f2dede; width: 106px; transform: rotateY(180deg) translate(147px, -17px);"></svg-icon>
           </div> 
         </div>
