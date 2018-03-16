@@ -1,7 +1,7 @@
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IconsService } from './../../-service/icons.service';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'cat',
   templateUrl: './cat.component.html',
@@ -9,11 +9,12 @@ import { IconsService } from './../../-service/icons.service';
   providers: [IconsService]
 })
 export class CatComponent implements OnInit {
-
+  complexForm : FormGroup;
   @Output() addCat = new EventEmitter();
   
   constructor(
-    private is: IconsService
+    private is: IconsService,
+    private fb: FormBuilder
   ) {}
 
  icons;
@@ -22,6 +23,9 @@ export class CatComponent implements OnInit {
   ngOnInit() {
     this.getIcons();
     this.currentIconValue();
+    this.complexForm = this.fb.group({
+      'cat' : [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20)])],
+    }) 
   }
   currentIconValue(){
     this.currentIcon = this.is.getCurrentIcon();
@@ -39,7 +43,16 @@ export class CatComponent implements OnInit {
       icon: this.currentIcon
     }
     this.addCat.emit(data);
-    newCat.value = '';
+  }
+  submitForm(value: any){
+    let data = {
+      value: value.cat,
+      icon: this.currentIcon
+    }
+    console.log('123', data)
+    this.addCat.emit(data);
+    this.complexForm.reset();
+
   }
 
 }

@@ -3,19 +3,25 @@
 <div [@operAnimation]="operAnim">
   <div class="{{class}} mainCat ">
     <div *ngIf="cat">
-      
-      <form [formGroup]="complexForm" (ngSubmit)="addOper(newCatMoney, newCatDescr)" class="operForm">
-          <div class="alert alert-danger modal_window" [@operModal] *ngIf="!complexForm.controls['sum'].valid && complexForm.controls['sum'].touched">
-            <div class="inside_modal_window">Введите сумму.</div>
-            <svg-icon src="assets/arrow.svg" style="fill: #f2dede; width: 125px; transform: rotate(44deg) translate(83px, -69px);"></svg-icon>
-          </div>
+      <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)" class="operForm">
   
         <div class="enterSum" [ngClass]="{'has-error':!complexForm.controls['sum'].valid && complexForm.controls['sum'].touched}">
 
           <label for="sum" [@insideOperLabel]>Введите сумму</label>
-          <input #newCatMoney type="number" id="sum" [@insideOperInput] [formControl]="complexForm.controls['sum']">
-
+          <input #newCatMoney id="sum" [@insideOperInput] [formControl]="complexForm.controls['sum']">
+          <div *ngIf="complexForm.controls['sum'].hasError('required') && complexForm.controls['sum'].touched" class="alert alert-danger modal_window" [@operModal]>
+            <div class="inside_modal_window">Введите сумму :)</div>
+            <svg-icon src="assets/arrow.svg" style="fill: #f2dede; width: 125px; transform: rotate(44deg) translate(83px, -69px);"></svg-icon>
+          </div>
+          <div *ngIf="complexForm.controls['sum'].hasError('maxlength') && complexForm.controls['sum'].touched" class="alert alert-danger modal_window" [@operModal]>
+            <div class="inside_modal_window">Очень длинное число.</div>
+            <svg-icon src="assets/arrow.svg" style="fill: #f2dede; width: 125px; transform: rotate(44deg) translate(83px, -69px);"></svg-icon>
+          </div>
         </div>
+
+
+
+
         <div class="icon" [@iconUnderLine]><i class="{{cat.icon}} fa-2x"></i>{{cat.cat}}</div>
         
         <div [ngClass]="{'has-error':!complexForm.controls['description'].valid && complexForm.controls['description'].touched}" class="form_textarea">
@@ -25,14 +31,14 @@
               <div class="inside_modal_window">Введите описание.</div>
               <svg-icon src="assets/arrow.svg" style=" fill: #f2dede; width: 106px; transform: rotateY(180deg) translate(147px, -17px);"></svg-icon>
           </div> 
+          <div class="alert alert-danger modal_window_descr" [@operModal] *ngIf="complexForm.controls['description'].hasError('maxLength')">
+            <div class="inside_modal_window">оч длинное число.</div>
+            <svg-icon src="assets/arrow.svg" style=" fill: #f2dede; width: 106px; transform: rotateY(180deg) translate(147px, -17px);"></svg-icon>
+        </div> 
         </div>
 
-        <button type="submit" class="addNote_button" [disabled]="!complexForm.valid"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+        <button type="submit" #submit class="addNote_button" [disabled]="complexForm.invalid"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
       </form>
-      
-
-
-
     </div>
     
     <div *ngIf="!cat" class="ChooseCat" [@chooseCat]>

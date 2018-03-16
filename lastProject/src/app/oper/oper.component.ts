@@ -7,6 +7,7 @@ import { fadeIn } from 'ng-animate';
 import { lightSpeedIn } from 'ng-animate';
 import { lightSpeedOut } from 'ng-animate';
 import { bounceIn } from 'ng-animate';
+import { FormControl } from '@angular/forms/src/model';
 
 @Component({
   selector: 'oper',
@@ -81,14 +82,14 @@ export class OperComponent implements OnInit {
     private os: OpersService,
     private fb: FormBuilder
   ) { 
-    this.complexForm = fb.group({
-      'sum' : [null, Validators.required],
-      'description': [null, Validators.required],
-    })
+    // this.complexForm = fb.group({
+    //   'sum' : [null, Validators.compose([Validators.required, Validators.maxLength(9)])],
+    //   'description': [null, Validators.compose([Validators.required, Validators.maxLength(40)])],
+    // })
    }
 
   ngOnInit() {
-    
+ 
   }
   ngOnChanges(changes){
     for( const c in changes){
@@ -96,24 +97,21 @@ export class OperComponent implements OnInit {
 
         }
     }
+    this.complexForm = this.fb.group({
+      'sum' : [null, Validators.compose([Validators.required, Validators.maxLength(6)])],
+      'description': [null, Validators.compose([Validators.required, Validators.maxLength(40)])],
+    }) 
     
   }
-  // submitForm(value: any):void{
-  //   console.log('Reactive Form Data: ')
-  //   console.log(value);
-  // }
 
-  addOper(newCatMoney, newCatDescr){
-
+  submitForm(value: any){
     let data = {
-      money: newCatMoney.value,
-      descr: newCatDescr.value,
+      money: value.sum,
+      descr: value.description,
       cat: this.cat.cat,
     }
     this.os.addOper(this.type, data);
-    this.complexForm = this.fb.group({
-      'sum' : '',
-      'description': '',
-    })
+    this.complexForm.reset();
+
   }
 }
