@@ -8,7 +8,7 @@
         <div class="enterSum" [ngClass]="{'has-error':!complexForm.controls['sum'].valid && complexForm.controls['sum'].touched}">
 
           <label for="sum" [@insideOperLabel]>Введите сумму</label>
-          <input #newCatMoney id="sum" [@insideOperInput] [formControl]="complexForm.controls['sum']">
+          <input #newCatMoney id="sum"  [@insideOperInput] [formControl]="complexForm.controls['sum']">
           <div *ngIf="complexForm.controls['sum'].hasError('required') && complexForm.controls['sum'].touched" class="alert alert-danger modal_window" [@operModal]>
             <div class="inside_modal_window">Введите сумму :)</div>
             <svg-icon src="assets/arrow.svg" style="fill: #f2dede; width: 125px; transform: rotate(44deg) translate(83px, -69px);"></svg-icon>
