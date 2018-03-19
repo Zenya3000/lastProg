@@ -114,5 +114,4 @@ export class OperComponent implements OnInit {
     this.complexForm.reset();
 
   }
-
 }

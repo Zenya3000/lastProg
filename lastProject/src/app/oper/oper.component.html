@@ -8,7 +8,7 @@
         <div class="enterSum" [ngClass]="{'has-error':!complexForm.controls['sum'].valid && complexForm.controls['sum'].touched}">
 
           <label for="sum" [@insideOperLabel]>Введите сумму</label>
-          <input #newCatMoney id="sum" [@insideOperInput] [formControl]="complexForm.controls['sum']"  onkeydown="javascript: return event.keyCode == 49 || event.keyCode == 50 || event.keyCode == 51 || event.keyCode == 52 || event.keyCode == 53 || event.keyCode == 54 || event.keyCode == 55 || event.keyCode == 56 || event.keyCode == 57 || event.keyCode == 48 || event.keyCode == 8 ? true : false">
+          <input #newCatMoney id="sum" [@insideOperInput] [formControl]="complexForm.controls['sum']" ng-paste='preventPaste($event)'  onkeydown="javascript: return event.keyCode == 49 || event.keyCode == 50 || event.keyCode == 51 || event.keyCode == 52 || event.keyCode == 53 || event.keyCode == 54 || event.keyCode == 55 || event.keyCode == 56 || event.keyCode == 57 || event.keyCode == 48 || event.keyCode == 8 ?  true : false">
           <div *ngIf="complexForm.controls['sum'].hasError('required') && complexForm.controls['sum'].touched" class="alert alert-danger modal_window" [@operModal]>
             <div class="inside_modal_window">Введите сумму :)</div>
             <svg-icon src="assets/arrow.svg" style="fill: #f2dede; width: 125px; transform: rotate(44deg) translate(83px, -69px);"></svg-icon>
@@ -17,6 +17,10 @@
             <div class="inside_modal_window">Очень длинное число.</div>
             <svg-icon src="assets/arrow.svg" style="fill: #f2dede; width: 125px; transform: rotate(44deg) translate(83px, -69px);"></svg-icon>
           </div>
+          <!-- <div *ngIf="complexForm.controls['sum'].hasError('pattern') && complexForm.controls['sum'].touched" class="alert alert-danger modal_window" [@operModal]>
+            <div class="inside_modal_window">Это числовое поле.</div>
+            <svg-icon src="assets/arrow.svg" style="fill: #f2dede; width: 125px; transform: rotate(44deg) translate(83px, -69px);"></svg-icon>
+          </div> -->
         </div>
 
 
@@ -32,7 +36,7 @@
               <svg-icon src="assets/arrow.svg" style=" fill: #f2dede; width: 106px; transform: rotateY(180deg) translate(147px, -17px);"></svg-icon>
           </div> 
           <div class="alert alert-danger modal_window_descr" [@operModal] *ngIf="complexForm.controls['description'].hasError('maxLength')">
-            <div class="inside_modal_window">оч длинное число.</div>
+            <div class="inside_modal_window">оч длинное описание.</div>
             <svg-icon src="assets/arrow.svg" style=" fill: #f2dede; width: 106px; transform: rotateY(180deg) translate(147px, -17px);"></svg-icon>
         </div> 
         </div>

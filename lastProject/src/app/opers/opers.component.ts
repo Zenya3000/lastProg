@@ -44,6 +44,7 @@ export class OpersComponent implements OnInit {
   @Input() cat;
   @Input() defCat;
   typeName = false;
+
   constructor(
     private os: OpersService,
     private af: AngularFireDatabase
