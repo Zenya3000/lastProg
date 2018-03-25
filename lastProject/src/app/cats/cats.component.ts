@@ -10,44 +10,22 @@ import { lightSpeedOut } from 'ng-animate';
   templateUrl: './cats.component.html',
   styleUrls: ['./cats.component.sass'],
   providers: [ CatsService],
-  animations: [
-    trigger('listAnimation', [
-      transition('* <=> *', [
-        query(':enter', style({opacity: 0}), {optional: true}),
+  // animations: [
+  //   trigger('listAnimation', [
+  //     transition('* <=> *', [
+  //       query(':enter', style({opacity: 0}), {optional: true}),
 
-        query(':enter', stagger('150ms', [
-          animate('300ms ease-in', keyframes([
-            style({opacity: 0, transform: 'translateX(-50px)', offset: 0}),
-            style({opacity: 0.5, transform: 'translateX(-25px)', offset: 0.5}),
-            style({opacity: 1, transform: 'translateX(0)', offset: 1}),
-          ]))
-        ]), {optional: true})
+  //       query(':enter', stagger('150ms', [
+  //         animate('300ms ease-in', keyframes([
+  //           style({opacity: 0, transform: 'translateX(-50px)', offset: 0}),
+  //           style({opacity: 0.5, transform: 'translateX(-25px)', offset: 0.5}),
+  //           style({opacity: 1, transform: 'translateX(0)', offset: 1}),
+  //         ]))
+  //       ]), {optional: true})
 
-      ])
-    ]),
-
-
-
-    // trigger('itemAnimation', [
-    //   transition(':leave', [
-    //     useAnimation(fadeOut)
-    //   ])
-    // ]),
-    // trigger('itemAnimationn', [
-    //   transition(':leave', [
-    //     useAnimation(fadeOut)
-    //   ])
-    // ]),
-
-    // trigger('animCats', [
-    //   transition('* <=> *', [
-    //     query(':enter', style({opacity: 0, transform: 'translateY(-40px)'}), {optional: true}),
-    //     query(':enter', stagger('500ms', [
-    //       animate('800ms 1.2s ease-out', style({opacity: 1, transform: 'translateX(0)'}))
-    //     ]),{optional: true})
-    //   ])
-    // ]),
-  ],
+  //     ])
+  //   ]),
+  // ],
 })
 export class CatsComponent implements OnInit {
   @Input() type;

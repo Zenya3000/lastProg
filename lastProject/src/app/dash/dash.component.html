@@ -1,46 +1,49 @@
 <!-- <h4>hi there)s</h4> -->
-<div class="row">
-  <switcher
-  [types] = "types"
-  [type] = "currentType"
-  (changeType)="changingType($event)"
-  ></switcher>
+<div class="container padding_top" >
+  <div class="row">
+    <switcher
+    [types] = "types"
+    [type] = "currentType"
+    (changeType)="changingType($event)"
+    ></switcher>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div class="row">
+      <cats
+      [type] = "currentType"
+      (selectedCat)="choosingCat($event)"
+      (removeSelect)="removeChoosingSelect($event)"
+      [class] = "className"
+      ></cats>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+      <oper
+      [type] = "currentType"
+      [cat] = "currentCat"
+      [class] = "className"
+
+      ></oper>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="row">
+      <opers
+      [type] = "currentType"
+      [cat] = "currentCat"
+      [class] = "className"
+      ></opers>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div class="row">
-  <div class="col-md-3">
-      <div class="row">
-    <cats
-    [type] = "currentType"
-    (selectedCat)="choosingCat($event)"
-    (removeSelect)="removeChoosingSelect($event)"
-    [class] = "className"
-    ></cats>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="row">
-    <oper
-    [type] = "currentType"
-    [cat] = "currentCat"
-    [class] = "className"
-
-    ></oper>
-    </div>
-  </div>
-
-  <div class="col-md-3">
-      <div class="row">
-    <opers
-    [type] = "currentType"
-    [cat] = "currentCat"
-    [class] = "className"
-    ></opers>
-    </div>
-  </div>
-
-</div>
 <div class="row">
   <div class="smth"></div>
 </div>

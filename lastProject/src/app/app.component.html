@@ -1,33 +1,47 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="container">
-  <div style="text-align:center">
-    <img width="100" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-  </div>
 
-  <div *ngIf="user?.uid; else loginBox" class="head">
-    <h3>Добро пожаловать в систему, {{name.displayName}}</h3>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+  <div class="navbar-header">
+    <img class="navbar-brand" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  </div>
+  <div *ngIf="isLoggedIn()">
+    <p class="navbar-text navbar-right">Logged In: {{name}} <button class="fa fa-sign-out btn btn-danger" aria-hidden="true" (click)="logout()"> Logout</button></p>
+  </div>
+  <div *ngIf="!isLoggedIn()">
+    <p class="navbar-text navbar-right">Logged Out!</p>
+  </div>
+  </div>
+</nav>
+<div class="container routeContainer" [@routeAnimation]="getDepth(myOutlet)">
+  <router-outlet #myOutlet="outlet"></router-outlet>
+</div>
+  <!-- <div style="text-align:center">
+    
+  </div> -->
+
+  <!-- <div *ngIf="user?.uid; else loginBox" class="head">
+    <h3>Добро пожаловать в систему, </h3>
     
     <button class="fa fa-sign-out btn btn-danger" aria-hidden="true" (click)="logout()"> Logout</button>
 
-  </div>
-  <div *ngIf="isLoggedIn()">
+  </div> -->
+  <!-- <div *ngIf="isLoggedIn()">
     <dash></dash>
-  </div>
-  <ng-template #loginBox>
-    <div class="main_box">
-    <h3>Войдите, используя аккаунт Google.</h3>
-      <div class="window_auth">
-        <div class="icon"></div>
-        <button class="auth_button" (click)="loginWithGoogle()"></button>
-      </div>
-    </div>
-    <span ><h6 class="bottom_text">* Ваши данные нигде не сохраняются</h6></span>
-  </ng-template>  
-  
-</div>
+  </div> -->
 
-<ul>
+
+
+
+
+  <!-- <ng-template #loginBox> -->
+
+  <!-- </ng-template>   -->
+  
+
+
+<!-- <ul>
 <li *ngFor="let d of val; let i = index">
 <span>{{d.key}} : {{d.value}}</span>
 </li>
-</ul>
+</ul> -->

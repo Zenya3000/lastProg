@@ -1,6 +1,8 @@
 <div class="cats_main">
 <div class="list"
-[@listAnimation] = "cats.length">
+
+>
+<!-- [@listAnimation] = "cats.length" -->
   <div *ngFor="let c of cats; let i = index;" [class.active]="clicked === c.cat" class="{{class}} item"
     (click)="clicked = c.cat"
     >

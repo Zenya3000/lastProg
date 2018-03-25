@@ -11,14 +11,14 @@ export class AuthService {
   private currentUser: firebase.User = null;
 
 constructor(public afAuth: AngularFireAuth) {
-    this.authState = this.afAuth.authState;
-    this.authState.subscribe(user => {
-      if (user) {
-        this.currentUser = user;
-      } else {
-        this.currentUser = null;
-      }
-    });
+    // this.authState = this.afAuth.authState;
+    // this.authState.subscribe(user => {
+    //   if (user) {
+    //     this.currentUser = user;
+    //   } else {
+    //     this.currentUser = null;
+    //   }
+    // });
   }
   getAuthState() {
     return this.authState;

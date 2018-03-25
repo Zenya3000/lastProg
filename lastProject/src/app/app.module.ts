@@ -20,9 +20,16 @@ import { CatsComponent } from './cats/cats.component';
 import { CatComponent } from './cats/cat/cat.component';
 import { OpersComponent } from './opers/opers.component';
 import { OperComponent } from './oper/oper.component';
+import { AuthComponent } from './auth/auth.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OneoperlistComponent } from './oneoperlist/oneoperlist.component';
+import { RouterModule, Routes } from '@angular/router';
 
+
+const router: Routes = [
+  {path: '', component: DashComponent, data: {depth: 1 }},
+  {path: 'login', component: AuthComponent, data: {depth: 2 }}
+]
 
 
 @NgModule({
@@ -34,6 +41,7 @@ import { OneoperlistComponent } from './oneoperlist/oneoperlist.component';
     CatComponent,
     OpersComponent,
     OperComponent,
+    AuthComponent,
     OneoperlistComponent,
   ],
   imports: [
@@ -49,6 +57,7 @@ import { OneoperlistComponent } from './oneoperlist/oneoperlist.component';
     HttpClientModule,
     AngularSvgIconModule,
     FormsModule,
+    RouterModule.forRoot(router),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

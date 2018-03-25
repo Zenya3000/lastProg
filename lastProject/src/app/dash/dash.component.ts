@@ -1,13 +1,14 @@
+
 import { Component, OnInit } from '@angular/core';
 import { TypesService } from '../-service/types.service';
-
 
 
 @Component({
   selector: 'dash',
   templateUrl: './dash.component.html',
   styleUrls: ['./dash.component.sass'],
-  providers: [TypesService]
+  providers: [TypesService],
+
 })
 export class DashComponent implements OnInit {
   types;
