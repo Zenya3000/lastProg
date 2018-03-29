@@ -24,8 +24,8 @@ import { AuthComponent } from './auth/auth.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OneoperlistComponent } from './oneoperlist/oneoperlist.component';
 import { RouterModule, Routes } from '@angular/router';
-
-
+import {MatButtonModule} from '@angular/material';
+import {MatInputModule} from '@angular/material/input';
 const router: Routes = [
   {path: '', component: DashComponent, data: {depth: 1 }},
   {path: 'login', component: AuthComponent, data: {depth: 2 }}
@@ -55,6 +55,7 @@ const router: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatButtonModule, MatInputModule,
     AngularSvgIconModule,
     FormsModule,
     RouterModule.forRoot(router),

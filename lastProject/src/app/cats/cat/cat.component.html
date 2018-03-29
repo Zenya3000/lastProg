@@ -8,13 +8,16 @@
         <!-- {{icon.name}} -->
     </span>
   </div>
-  <span class="underIconText"><h6>* Выберите иконку для своей категории :)</h6></span>
+  <!-- <span class="underIconText"><h6>* Выберите иконку для своей категории :)</h6></span> -->
 
   <div class="addCat">
-
-    <input type="text" class="from-control" #newCat [formControl]="complexForm.controls['cat']" placeholder="Введите название категории">
-    <div *ngIf="complexForm.controls['cat'].hasError('maxlength') && complexForm.controls['cat'].touched" class="alert alert-danger">Превышен максимальный лимит символов</div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Иконка для своей категории" value="" #newCat [formControl]="complexForm.controls['cat']">
+      <div *ngIf="complexForm.controls['cat'].hasError('maxlength') && complexForm.controls['cat'].touched" class="alert alert-danger">Превышен максимальный лимит символов</div>
+    </mat-form-field>
+    <!-- <input type="text" class="from-control" #newCat [formControl]="complexForm.controls['cat']" placeholder="Введите название категории"> -->
+    <!-- <div *ngIf="complexForm.controls['cat'].hasError('maxlength') && complexForm.controls['cat'].touched" class="alert alert-danger">Превышен максимальный лимит символов</div> -->
     <br>
-    <button class="btn btn-success" type="submit" [disabled]="complexForm.invalid">Добавить :)</button>
+    <button mat-raised-button color="accent" type="submit" [disabled]="complexForm.invalid">Accent</button>
   </div>
 </form>

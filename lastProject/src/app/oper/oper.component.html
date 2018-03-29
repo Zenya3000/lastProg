@@ -29,8 +29,9 @@
         <div class="icon" [@iconUnderLine]><i class="{{cat.icon}} fa-2x"></i>{{cat.cat}}</div>
         
         <div [ngClass]="{'has-error':!complexForm.controls['description'].valid && complexForm.controls['description'].touched}" class="form_textarea">
-        
-          <textarea #newCatDescr rows="4"  [formControl]="complexForm.controls['description']" placeholder="Описание"></textarea>
+          <mat-form-field class="example-full-width">
+            <textarea matInput #newCatDescr rows="4"  [formControl]="complexForm.controls['description']" placeholder="Описание"></textarea>
+          </mat-form-field>
           <div class="alert alert-danger modal_window_descr" [@operModal] *ngIf="!complexForm.controls['description'].valid && complexForm.controls['description'].touched">
               <div class="inside_modal_window">Введите описание.</div>
               <svg-icon src="assets/arrow.svg" style=" fill: #f2dede; width: 106px; transform: rotateY(180deg) translate(147px, -17px);"></svg-icon>
@@ -41,7 +42,7 @@
         </div> 
         </div>
 
-        <button type="submit" #submit class="addNote_button" [disabled]="complexForm.invalid"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+        <button type="submit" mat-fab color="warn" #submit class="addNote_button" [disabled]="complexForm.invalid"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
       </form>
     </div>
     
