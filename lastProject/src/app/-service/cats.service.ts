@@ -80,6 +80,7 @@ export class CatsService {
     query.remove();
   }
   addCat(data){
+    console.log(data);
     let query = firebase.database().ref('MyApp/'+data.type.url+"");
     var date = new Date();
     let scope = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);

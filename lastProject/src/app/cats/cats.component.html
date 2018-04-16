@@ -1,32 +1,97 @@
-<div class="cats_main">
-<div class="list"
-
->
-<!-- [@listAnimation] = "cats.length" -->
-  <div *ngFor="let c of cats; let i = index;" [class.active]="clicked === c.cat" class="{{class}} item"
-    (click)="clicked = c.cat"
-    >
-    <!-- <div *ngIf="class == 'dash--income'">
-        <i class="fa fa-level-down fa-2x" aria-hidden="true"></i>
-    </div>
-    <div *ngIf="class == 'dash--cons'">
-        <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
-    </div> -->
-
-    <div class="cat"
-    (click)="choseCat(c)"
+<!-- <div class="col-md-3" fxShow="true" fxHide.xs="true"> -->
+  <div fxShow="true" fxHide.xs="true">
+  <div class="row">
+    <div class="cats_main">
+    <div class="list"
 
     >
-      <div class="{{c.icon}} fa-2x icon_opacity"></div>
-      {{c.cat}}
-      
+    <!-- [@listAnimation] = "cats.length" -->
+      <div *ngFor="let c of cats; let i = index;" [class.active]="clicked === c.cat" class="{{class}} item"
+        (click)="clicked = c.cat"
+        [@listAnimation] = "cats.length"
+        >
+        <!-- <div *ngIf="class == 'dash--income'">
+            <i class="fa fa-level-down fa-2x" aria-hidden="true"></i>
+        </div>
+        <div *ngIf="class == 'dash--cons'">
+            <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
+        </div> -->
+
+        <div class="cat"
+        (click)="choseCat(c)"
+
+        >
+          <div class="{{c.icon}} fa-2x icon_opacity"></div>
+          {{c.cat}}
+          
+        </div>
+        <button
+        (click)="deleteCat(c.cat, i)"
+        >+</button>
+      </div>
     </div>
-    <button
-    (click)="deleteCat(c.cat, i)"
-    >+</button>
+    <hr>
+    <cat 
+      (addCat)="addCat($event)"
+    ></cat>
+    </div>
   </div>
 </div>
-<cat 
-(addCat)="addCat($event)"
-></cat>
+
+
+
+
+<div class="cats_mob" fxShow.xs="true" fxHide="true">
+  
+  <div class="open_menu_button">
+      <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+  </div>
+  <div class="open_addcat_button">
+      <button mat-icon-button (click)="openDialog()"><mat-icon>create_new_folder</mat-icon></button>
+  </div>
+  
+
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="Over" [(opened)]="opened" class="sidenav_mob">
+      <div class="test">
+      <p>Выберите категорию</p>
+      <div class="list"
+      
+      >
+      <!-- [@listAnimation] = "cats.length" -->
+        <div *ngFor="let c of cats; let i = index;" [class.active]="clicked === c.cat" class="{{class}} item"
+          (click)="clicked = c.cat"
+          [@listAnimation] = "cats.length"
+          >
+          <!-- <div *ngIf="class == 'dash--income'">
+              <i class="fa fa-level-down fa-2x" aria-hidden="true"></i>
+          </div>
+          <div *ngIf="class == 'dash--cons'">
+              <i class="fa fa-level-up fa-2x" aria-hidden="true"></i>
+          </div> -->
+  
+          <div class="cat"
+          (click)="choseCat(c)"
+  
+          >
+            <div class="{{c.icon}} fa-2x icon_opacity"></div>
+            {{c.cat}}
+            
+          </div>
+          <button
+          (click)="deleteCat(c.cat, i)"
+          >+</button>
+        </div>
+      </div>
+      <button  mat-button (click)="sidenav.toggle()" class="sidenav_button"><mat-icon>close</mat-icon></button>
+    </div>
+      
+    </mat-sidenav>
+    
+  </mat-sidenav-container>
+  <!-- <mat-sidenav-container class="example-container">
+      <mat-sidenav #sidenavaddcat mode="Over" position="end" [(opened)]="opened" class="sidenav_mob2">
+        Sidenav content
+      </mat-sidenav>
+    </mat-sidenav-container> -->
 </div>

@@ -3,11 +3,32 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } fro
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { trigger, state, style, stagger, transition, animate, keyframes, useAnimation, query } from '@angular/animations';
+import { fadeIn } from 'ng-animate';
 @Component({
   selector: 'oneoperlist',
   templateUrl: './oneoperlist.component.html',
   styleUrls: ['./oneoperlist.component.sass'],
-  providers: [OpersService]
+  providers: [OpersService],
+  animations: [
+  trigger('activeAnimation', [
+    
+    // state('in', style({transform: 'translateX(0)', opacity: 1})),
+    // transition('void => *', [
+    //   style({transform: 'translateX(100%)', opacity: 1}),
+    //   animate(260)
+    // ])
+    // transition('void => *', [
+    //   style({transform: 'translateX(-100%)'}),
+    //   animate(100)
+    // ]),
+    // transition('* => void', [
+    //   animate(100, style({transform: 'translateX(100%)'}))
+    // ])
+    ]) 
+  ],
+
+
 })
 export class OneoperlistComponent implements OnInit {
   @Input() icon;
@@ -17,14 +38,17 @@ export class OneoperlistComponent implements OnInit {
   @Input() type;
   @Input() index;
   @Output() removeOper = new EventEmitter()
+  
   constructor(
     private os: OpersService
   ) { 
     
   }
+  panelOpenState: boolean = false;
   ChangeEdit = true;
+  active: boolean = false;
   ngOnInit() {
-   
+    console.log(this.index);
   }
   
   edit(){
@@ -43,5 +67,8 @@ export class OneoperlistComponent implements OnInit {
       
     }
     
+  }
+  activeButton(){
+    this.active = !this.active;
   }
 }

@@ -8,6 +8,7 @@ import { lightSpeedIn } from 'ng-animate';
 import { lightSpeedOut } from 'ng-animate';
 import { bounceIn } from 'ng-animate';
 import { FormControl } from '@angular/forms/src/model';
+import { ObservableMedia } from '@angular/flex-layout';
 
 @Component({
   selector: 'oper',

@@ -1,5 +1,5 @@
-<!-- <h4>hi there)s</h4> -->
-<div class="container padding_top" >
+
+<div class="padding_top" >
   <div class="row">
     <switcher
     [types] = "types"
@@ -8,39 +8,40 @@
     ></switcher>
   </div>
 
-  <div class="row">
-    <div class="col-md-3">
-        <div class="row">
-      <cats
-      [type] = "currentType"
-      (selectedCat)="choosingCat($event)"
-      (removeSelect)="removeChoosingSelect($event)"
-      [class] = "className"
-      ></cats>
-      </div>
-    </div>
+  <div class="row" fxLayout="row" class="main_content">
 
-    <div class="col-md-6">
+        <cats
+        fxFlex="25"
+        fxFlex.xs="0"
+        fxFlex.sm="30"
+        [type] = "currentType"
+        (selectedCat)="choosingCat($event)"
+        (removeSelect)="removeChoosingSelect($event)"
+        [class] = "className"
+        ></cats>
+
+
+    <!-- <div class="col-md-6"> -->
+      <div fxFlex="50" fxFlex.sm="40" fxFlex.xs="0">
       <div class="row">
-      <oper
-      [type] = "currentType"
-      [cat] = "currentCat"
-      [class] = "className"
-
-      ></oper>
+        <oper
+        [type] = "currentType"
+        [cat] = "currentCat"
+        [class] = "className"
+        ></oper>
       </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="row">
-      <opers
-      [type] = "currentType"
-      [cat] = "currentCat"
-      [class] = "className"
-      ></opers>
+    <!-- <div class="col-md-3"> -->
+    <div fxFlex="25" fxFlex.sm="30" fxFlex.xs="100">
+      <div class="row">
+        <opers
+        [type] = "currentType"
+        [cat] = "currentCat"
+        [class] = "className"
+        ></opers>
       </div>
     </div>
-
   </div>
 </div>
 

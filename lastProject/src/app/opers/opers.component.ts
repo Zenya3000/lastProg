@@ -8,6 +8,7 @@ import { fadeIn, bounce } from 'ng-animate';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
+import { ObservableMedia } from '@angular/flex-layout';
 // import { trigger, state, style, transition, animate, keyframes, useAnimation } from '@angular/animations';
 // import { bounce } from 'ng-animate';
 
@@ -19,17 +20,16 @@ import * as firebase from 'firebase/app';
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('listOpersAnimation', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms', style({ opacity: 1 }))
-        // useAnimation(fadeIn)
+      transition('void => *', [
+        style({transform: "translateX(100%)", opacity: 0 }),
+        animate('0.2s ease-out', style({transform: "translateX(0)", opacity: 1 }))
       ]),
-      transition(':leave', [
-        style({transform: 'translateX(0)', opacity: 1}),
-        animate('300ms', style({transform: 'translateX(100%)', opacity: 0}))
+      transition(":leave", [
+        // animate(500, style({ opacity: 0 }))
       ])
-    ]),
+  ])
   ],
+
 })
 export class OpersComponent implements OnInit {
   todos$: Observable<any[]>;
@@ -44,10 +44,12 @@ export class OpersComponent implements OnInit {
   @Input() cat;
   @Input() defCat;
   typeName = false;
+  exp:string;
 
   constructor(
     private os: OpersService,
-    private af: AngularFireDatabase
+    private af: AngularFireDatabase,
+    private observableMedia: ObservableMedia
   ) { }
   ngOnInit() {
 
@@ -118,5 +120,8 @@ export class OpersComponent implements OnInit {
   }
   removeOper(index){
     this.output.splice(index, 1);
+  }
+  goAnimate() {
+    this.exp = 'goAnimate';
   }
 }

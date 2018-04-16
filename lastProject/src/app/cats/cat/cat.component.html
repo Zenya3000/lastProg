@@ -1,5 +1,6 @@
-<hr>
-<form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+
+<!-- <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)"> -->
+  <form [formGroup]="complexForm">
   <div class="iconCat">
     <span *ngFor="let icon of icons; let i = index;" class="icon"
     (click)="changeVal(icon.url)" [class.active]="clicked === icon.url"
@@ -12,12 +13,20 @@
 
   <div class="addCat">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Иконка для своей категории" value="" #newCat [formControl]="complexForm.controls['cat']">
+      <input matInput placeholder="Имя для твоей категории" value="" #newCat [formControl]="complexForm.controls['cat']">
       <div *ngIf="complexForm.controls['cat'].hasError('maxlength') && complexForm.controls['cat'].touched" class="alert alert-danger">Превышен максимальный лимит символов</div>
     </mat-form-field>
     <!-- <input type="text" class="from-control" #newCat [formControl]="complexForm.controls['cat']" placeholder="Введите название категории"> -->
     <!-- <div *ngIf="complexForm.controls['cat'].hasError('maxlength') && complexForm.controls['cat'].touched" class="alert alert-danger">Превышен максимальный лимит символов</div> -->
     <br>
-    <button mat-raised-button color="accent" type="submit" [disabled]="complexForm.invalid">Accent</button>
+    <div fxHide.xs="true">
+      <button mat-raised-button color="accent" type="submit" (click)="submitForm(complexForm.value)" [disabled]="complexForm.invalid">Добавить</button>
+    </div>
+    <div fxHide.xs="false" fxHide.md="true" fxHide.lg="true" class="modal_bottom_buttons"
+    >
+        <button mat-raised-button color="warn" (click)="onNoClick()" >Отмена</button>
+        <button mat-raised-button color="accent" type="submit" (click)="mobile_submit_form(complexForm.value)" [disabled]="complexForm.invalid">Добавить</button>
+
+    </div>
   </div>
 </form>

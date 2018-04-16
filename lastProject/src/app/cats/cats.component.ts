@@ -1,31 +1,28 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, Inject } from '@angular/core';
 import { CatsService } from '../-service/cats.service';
 import { trigger, state, style, stagger, transition, animate, keyframes, useAnimation, query } from '@angular/animations';
 import { fadeOut } from 'ng-animate';
 import { fadeIn } from 'ng-animate';
 import { bounceIn } from 'ng-animate';
 import { lightSpeedOut } from 'ng-animate';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 @Component({
   selector: 'cats',
   templateUrl: './cats.component.html',
   styleUrls: ['./cats.component.sass'],
   providers: [ CatsService],
-  // animations: [
-  //   trigger('listAnimation', [
-  //     transition('* <=> *', [
-  //       query(':enter', style({opacity: 0}), {optional: true}),
-
-  //       query(':enter', stagger('150ms', [
-  //         animate('300ms ease-in', keyframes([
-  //           style({opacity: 0, transform: 'translateX(-50px)', offset: 0}),
-  //           style({opacity: 0.5, transform: 'translateX(-25px)', offset: 0.5}),
-  //           style({opacity: 1, transform: 'translateX(0)', offset: 1}),
-  //         ]))
-  //       ]), {optional: true})
-
-  //     ])
-  //   ]),
-  // ],
+  animations: [
+    trigger('listAnimation', [
+      transition('void => *', [
+        style({transform: "translateX(-100%)", opacity: 0 }),
+        animate('0.2s ease-out', style({transform: "translateX(0)", opacity: 1 }))
+      ]),
+      transition(":leave", [
+        // animate(500, style({ opacity: 0 }))
+      ])
+    ]),
+  ],
 })
 export class CatsComponent implements OnInit {
   @Input() type;
@@ -36,9 +33,9 @@ export class CatsComponent implements OnInit {
   defCategory;
   status;
   clicked;
-  
   constructor(
     private cs: CatsService,
+    public dialog: MatDialog
 
   ) { }
 
@@ -47,6 +44,13 @@ export class CatsComponent implements OnInit {
   }
   ngOnChanges(change){
     this.getCats();
+  }
+  openDialog() {
+    this.dialog.open(CatsDialog, {
+      data: {
+        data: this.type
+      }
+    });
   }
 
   getCats(){
@@ -89,7 +93,11 @@ export class CatsComponent implements OnInit {
     // })
     console.log('cats', this.cats);
   }
-
-
-
+}
+@Component({
+  selector: 'cats-dialog',
+  templateUrl: 'cats-dialog.html',
+})
+export class CatsDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

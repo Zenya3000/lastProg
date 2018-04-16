@@ -1,7 +1,7 @@
 <!-- <h3>{{type.text}}</h3> -->
 
 <div [@operAnimation]="operAnim">
-  <div class="{{class}} mainCat ">
+  <div class="{{class}} mainCat " fxShow="true" fxHide.xs="true">
     <div *ngIf="cat">
       <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)" class="operForm">
   

@@ -1,44 +1,127 @@
-button
-    margin: 0 40px
-.switch__button
-    background: none
-    border: none
-    font-size: 30px
-.switch__main
-    display: block
-    margin: 25px 0 35px 0
-    text-align: center
-.dash--cons
-    color: black
-    &:hover
-        outline: none
-    &:focus
-        outline: none
-    &:active
-        outline: none
-    &.active
-        outline: none
-        color: #f87f7a
-        &:hover
-            outline: none
-        &:focus
-            outline: none
-        &:active
-            outline: none
 
-.dash--income
-    color: black
-    &:hover
-        outline: none
-    &:focus
-        outline: none
-    &:active
-        outline: none
-    &.active
-        color: #67b6ed
+@media only screen and (min-width: 320px)
+    .switch__main
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100%
+        height: 60px
+        .switch__button 
+            width: calc(50% + -55px)
+            height: 58px
+    .dash--cons
+        color: black
+        font-size: 14px
+        font-weight: bold
+        background-color: #e7e4e4
+        border: none
+        
         &:hover
             outline: none
         &:focus
             outline: none
         &:active
             outline: none
+        &.active
+            outline: none
+            color: white
+            background-color: #f87f7a
+            &:hover
+                outline: none
+            &:focus
+                outline: none
+            &:active
+                outline: none
+
+    .dash--income
+        color: black
+        font-size: 14px
+        font-weight: bold
+        background-color: #e7e4e4
+        border: none
+        &:hover
+            outline: none
+        &:focus
+            outline: none
+        &:active
+            outline: none
+        &.active
+            outline: none
+            color: white
+            background-color: #67b6ed
+            &:hover
+                outline: none
+            &:focus
+                outline: none
+            &:active
+                outline: none
+
+
+// @media only screen and (min-width: 600px)
+
+    
+@media only screen and (min-width: 991px)
+    button
+        // margin: 0 40px
+
+    .switch__main
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100%
+        height: 60px
+        margin: 25px 0 35px 0
+        text-align: center
+        .switch__button
+            background: white
+            border: none
+            font-size: 30px
+            width: 200px
+            height: 58px
+            display: flex
+            justify-content: space-around
+    .dash--cons
+        color: black
+        font-size: 14px
+        font-weight: bold
+        background-color: none
+        border: none
+        &:hover
+            outline: none
+        &:focus
+            outline: none
+        &:active
+            outline: none
+        &.active
+            outline: none
+            color: #f87f7a
+            &:hover
+                outline: none
+            &:focus
+                outline: none
+            &:active
+                outline: none
+
+    .dash--income
+        color: black
+        font-size: 14px
+        font-weight: bold
+        background-color: none
+        border: none
+        &:hover
+            outline: none
+        &:focus
+            outline: none
+        &:active
+            outline: none
+        &.active
+            color: #67b6ed
+            &:hover
+                outline: none
+            &:focus
+                outline: none
+            &:active
+                outline: none
+
+
+
